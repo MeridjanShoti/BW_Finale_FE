@@ -19,7 +19,6 @@ const mockFatture = [
   { id: 4, data: "05-06-2025", importo: "800€", stato: "Da Pagare", color: "#D9534F", icon: iconDanger },
   { id: 5, data: "05-06-2025", importo: "950€", stato: "Pagata", color: "#8CC152", icon: successIcon },
   { id: 6, data: "05-06-2025", importo: "300€", stato: "In Attesa", color: "#FFB400", icon: iconWarning },
-  { id: 6, data: "05-06-2025", importo: "300€", stato: "In Attesa", color: "#FFB400", icon: iconWarning },
 ];
 
 function DashboardFatture() {
