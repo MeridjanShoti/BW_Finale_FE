@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router";
+import { fetchLogin } from "../../redux/actions";
 
 function MyLogin() {
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
       username: "",
@@ -22,28 +26,8 @@ function MyLogin() {
         setError("");
         setSuccess(false);
     
-        try {
-          const response = await fetch("https://api.example.com/login", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
-    
-          if (!response.ok) {
-            throw new Error("Registration failed");
-          }
-    
-          setSuccess(true);
-          setFormData({
-            username: "",  
-            password: "",
-          
-          });
-        } catch (err) {
-          setError(err.message);
-        }
+        dispatch(fetchLogin(formData.username, formData.password))
+       
       };    
 
 
