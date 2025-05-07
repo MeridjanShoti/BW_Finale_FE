@@ -1,7 +1,9 @@
+import AccessPage from "../access/AccessPage";
+
 function MyHome() {
   return (
     <>
-      <h1>Home</h1>
+      <AccessPage />
     </>
   );
 }

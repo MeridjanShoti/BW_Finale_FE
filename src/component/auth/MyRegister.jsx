@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router";
 
 const MyRegister = () => {
   const [formData, setFormData] = useState({
@@ -49,32 +51,41 @@ const MyRegister = () => {
   };
 
   return (
+  
     <div>
-      <h2>Register</h2>
+      <h2 className="text-center">Registrati</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>Registration successful!</p>}
       <form onSubmit={handleSubmit}>
+
         <div>
-          <label>Username:</label>
-          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+        <div className=" d-flex justify-content-between my-2">
+          <label className="">Username:</label>
+          <input className="rounded-2 border border-secondary " type="text" name="username" value={formData.username} onChange={handleChange} required />
         </div>
-        <div>
+        <div className=" d-flex justify-content-between my-2">
           <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <input className="rounded-2 border border-secondary " type="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
-        <div>
+        <div className=" d-flex justify-content-between my-2">
           <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input className="rounded-2 border border-secondary " type="password" name="password" value={formData.password} onChange={handleChange} required />
         </div>
-        <div>
+        <div className=" d-flex justify-content-between my-2">
           <label>Nome:</label>
-          <input type="text" name="nome" value={formData.nome} onChange={handleChange} required />
+          <input className="rounded-2 border border-secondary " type="text" name="nome" value={formData.nome} onChange={handleChange} required />
         </div>
-        <div>
+        <div className=" d-flex justify-content-between my-2">
           <label>Cognome:</label>
-          <input type="text" name="cognome" value={formData.cognome} onChange={handleChange} required />
+          <input className="rounded-2 border border-secondary " type="text" name="cognome" value={formData.cognome} onChange={handleChange} required />
         </div>
-        <button type="submit">Register</button>
+        </div>
+      
+      <div className="d-flex justify-content-between my-2">
+      <Button type="submit" variant="outline-success">Registrati</Button>
+      <Link to="/login" variant="outline-secondary" >Effettua il login</Link>
+      </div>
+       
       </form>
     </div>
   );
