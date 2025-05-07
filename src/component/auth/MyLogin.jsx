@@ -10,6 +10,8 @@ function MyLogin() {
 
   const navigate = useNavigate();
 
+  const [token, setToken] = useState(null)
+
   
 
   const [formData, setFormData] = useState({
@@ -20,7 +22,8 @@ function MyLogin() {
  
 
   const [error, setError] = useState("");
-      const [success, setSuccess] = useState(false);
+
+  const [success, setSuccess] = useState(false);
     
   const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,16 +34,29 @@ function MyLogin() {
         e.preventDefault();
         setError("");
         setSuccess(false);
+
+        
+
     
         dispatch(fetchLogin(formData.username, formData.password));
-         
-        const token = localStorage.getItem("token"); 
 
        
+     setTimeout(() => {
+          const myToken = localStorage.getItem("token");
+          if (myToken) {
+            setToken(myToken);
+            setSuccess(true);
+          } else {
+            setError("Token not found");
+            setSuccess(false);
+          }
+        }
+        , 1000); 
+
       };   
       
       
-   
+    
 
   useEffect(() => { 
     if (token) {
