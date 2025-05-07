@@ -5,8 +5,9 @@ import MyHome from "./component/home/MyHome";
 import MyRegister from "./component/auth/MyRegister";
 
 import LoginPage from "./component/access/LoginPage";
-import MyLogin from "./component/auth/MyLogin";
+
 import AccessPage from "./component/access/AccessPage";
+import Dashboard from "./component/dashboard/Dashboard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<MyRegister />} />
           <Route path="/access" element={<AccessPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           
         </Routes>
       </BrowserRouter>

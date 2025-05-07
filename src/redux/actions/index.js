@@ -1,8 +1,20 @@
+const SET_USER = "SET_USER";
+const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+const LOGIN_FAILURE = "LOGIN_FAILURE";
+const LOGOUT = "LOGOUT";
+
+export{
+    SET_USER,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT}
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
+
 
 
 export const fetchLogin = (username, password) => {
-let apiUrl = import.meta.env.VITE_API_URL;
-
 
     return (dispatch) => {
         fetch ( apiUrl + "/login", {

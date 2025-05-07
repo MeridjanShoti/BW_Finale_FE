@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
 
 function MyNavBar() {
   console.log("Link is", Link);
-  const [user, setUser] = useState(null);
+  
+ const user = useSelector((state) => state.user.user);
+
   return (
     <div>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -26,7 +29,7 @@ function MyNavBar() {
               <NavDropdown.Item as={Link} to="/profile">
                 Profilo
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => setUser(null)}>Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => localStorage.removeItem("token")}>Logout</NavDropdown.Item>
             </NavDropdown>
           ) : (
             <>
