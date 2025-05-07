@@ -10,7 +10,7 @@ function MyNavBar() {
 
   return (
     <div>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" className="bg-body-tertiary d-none d-lg-block">
         <Container>
           <Navbar.Brand as={Link} to="/">
             React-Bootstrap
@@ -22,6 +22,9 @@ function MyNavBar() {
                 Home
               </Nav.Link>
               <Nav.Link to="/">Link</Nav.Link>
+              <Nav.Link as={Link} to="/dashboardUser" className={window.location.pathname === "/dashboard" ? "active" : ""}>
+                Dashboard user
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
           {user ? (
