@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { fetchLogin } from "../../redux/actions";
 
 function MyLogin() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
+  
+
   const [formData, setFormData] = useState({
       username: "",
       password: "",
     });
+
+ 
 
   const [error, setError] = useState("");
       const [success, setSuccess] = useState(false);
@@ -26,9 +32,21 @@ function MyLogin() {
         setError("");
         setSuccess(false);
     
-        dispatch(fetchLogin(formData.username, formData.password))
+        dispatch(fetchLogin(formData.username, formData.password));
+         
+        const token = localStorage.getItem("token"); 
+
        
-      };    
+      };   
+      
+      
+   
+
+  useEffect(() => { 
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token,navigate]);
 
 
   return (

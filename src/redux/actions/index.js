@@ -1,10 +1,11 @@
 
 
 export const fetchLogin = (username, password) => {
-const apiUrl = import.meta.env.VITE_API_URL;
+let apiUrl = import.meta.env.VITE_API_URL;
+
 
     return (dispatch) => {
-        fetch ( "http://localhost:8000/login", {
+        fetch ( apiUrl + "/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -15,18 +16,14 @@ const apiUrl = import.meta.env.VITE_API_URL;
             }),
             
         })
-        .then((response) => {   console.log("Response:", response); 
-            return response.json()  } )
-        
-
-      
+        .then((response) => response.json()   )
         .then((data) => {
-            if (data.access) {
+            if (data) {
                 dispatch({
                     type: "LOGIN_SUCCESS",
                     payload: data,
                 }); 
-                localStorage.setItem("access", data.access);
+                localStorage.setItem("token", data.token);
             } else {
                 dispatch({
                     type: "LOGIN_FAILURE",
@@ -37,3 +34,29 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
     };
 };
+
+
+export const fetchUserDetails = (token) => {
+    return (dispatch) => {
+        fetch(apiUrl + "/current-user", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data) {
+                dispatch({
+                    type: "SET_USER",
+                    payload: data,
+                });
+            } else {
+                dispatch({
+                    type: "LOGOUT",
+                });
+            }
+        });
+    };
+}
