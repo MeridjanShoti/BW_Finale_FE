@@ -8,6 +8,8 @@ import LoginPage from "./component/access/LoginPage";
 
 import AccessPage from "./component/access/AccessPage";
 import Dashboard from "./component/dashboard/Dashboard";
+import DashboardUser from "./component/dashboardUser/DashboardUser";
+import DashboardFatture from "./component/dashboardUser/DashboardFatture";
 
 function App() {
   return (
@@ -15,13 +17,13 @@ function App() {
       <BrowserRouter>
         <MyNavBar />
         <Routes>
-         
           <Route path="/" element={<MyHome />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<MyRegister />} />
           <Route path="/access" element={<AccessPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          
+          <Route path="/dashboardUser" element={<DashboardUser />} />
+          <Route path="/dashboardFatture" element={<DashboardFatture />} />
         </Routes>
       </BrowserRouter>
     </>
