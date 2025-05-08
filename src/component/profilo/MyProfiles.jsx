@@ -1,19 +1,13 @@
-import { use, useEffect } from "react";
+import { use, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Pencil } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
+import FileUploadModal from "./FileUploadModal";
 
 function MyProfile() {
   const utente = useSelector((state) => state.user.user);
-  useEffect(() => {
-    console.log(utente.appUser.roles);
-    console.log(utente);
-  }, [utente]);
-  function uploadAvatar() {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    const token = localStorage.getItem("token");
-    console.log("apertura caricamento avatar");
-  }
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       {utente ? (
@@ -25,10 +19,9 @@ function MyProfile() {
               color="black"
               className="position-absolute nav-icon--lower ms-2"
               style={{ textShadow: "2px 2px 2px #FFFFFF" }}
-              onClick={() => {
-                uploadAvatar();
-              }}
+              onClick={() => setShowModal(true)}
             />
+            <FileUploadModal show={showModal} handleClose={() => setShowModal(false)} />
             <img src={utente.avatar} alt="Avatar" width="100" height="100" />
             <h3>{utente.appUser.username}</h3>
           </div>
