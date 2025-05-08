@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails, LOGOUT } from "../../redux/actions";
 import { useNavigate } from "react-router";
+import DashboardUser from "../dashboardUser/DashboardUser";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,8 @@ const Dashboard = () => {
     <div>
       <h1>Dashboard</h1>
       <h3>Benvenuto, {user.username}</h3>
-      {user.roles?.includes("ROLE_ADMIN") && <h3>Admin</h3>}
-      {user.roles?.includes("ROLE_USER") && <h3>User</h3>}
+      {user.appUser.roles?.includes("ROLE_ADMIN") && <h3>Admin</h3>}
+      {user.appUser.roles?.includes("ROLE_USER") && <DashboardUser />}
     </div>
   );
 };

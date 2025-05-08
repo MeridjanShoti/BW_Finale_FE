@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
+import { fetchUserDetails, LOGOUT } from "../../redux/actions";
 
 function MyNavBar() {
   console.log("Link is", Link);
+  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchUserDetails(token));
+    } else {
+      dispatch({ type: LOGOUT });
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
+  }, [dispatch, token, navigate]);
   return (
     <div>
       <Navbar expand="lg" className="bg-body-tertiary d-none d-lg-block">

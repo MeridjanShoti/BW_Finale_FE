@@ -36,7 +36,7 @@ export const fetchLogin = (username, password) => {
 export const fetchUserDetails = (token) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(apiUrl + "/current-user", {
+      const response = await fetch(apiUrl + "/utenti/me", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
