@@ -33,6 +33,12 @@ function Fatture() {
       icon: iconDanger,
     },
   ];
+
+
+
+
+
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   return (

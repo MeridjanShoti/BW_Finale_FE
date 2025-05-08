@@ -7,7 +7,7 @@ const CardClienti = ({ cliente }) => {
           <Card.Img variant="top" src={cliente.logoAziendale} />
           <Card.Body>
             <Card.Title>{cliente.ragioneSociale}</Card.Title>
-            <Link to={"/paginaProfilo"} className="btn btn-primary">
+            <Link to={"/paginaProfilo/" + cliente.id} state={cliente} as={Link} className="btn btn-primary">
                         Vai al dettaglio cliente
                     </Link>
           </Card.Body>

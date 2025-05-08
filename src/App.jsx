@@ -13,6 +13,7 @@ import DashboardFatture from "./component/dashboardUser/DashboardFatture";
 import MyProfile from "./component/profilo/MyProfile";
 import ListaClienti from "./component/clienti/ListaClienti";
 import ProfiloCliente from "./component/clienti/ProfiloCliente";
+import FattureCliente from "./component/dashboardUser/FattureCliente";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
           <Route path="/dashboardFatture" element={<DashboardFatture />} />
           <Route path="/profile" element={<MyProfile />} />
           <Route path="/dashboardClienti" element={<ListaClienti />} />
-          <Route path= "/paginaProfilo" element={<ProfiloCliente />} />
+          <Route path= "/paginaProfilo/:id" element={<ProfiloCliente />} />
+          <Route path= "/fatture/:id" element={<FattureCliente />}/>
         </Routes>
       </BrowserRouter>
     </>
