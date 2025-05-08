@@ -10,6 +10,7 @@ import AccessPage from "./component/access/AccessPage";
 import Dashboard from "./component/dashboard/Dashboard";
 import DashboardUser from "./component/dashboardUser/DashboardUser";
 import DashboardFatture from "./component/dashboardUser/DashboardFatture";
+import Fatture from "./component/dashboardUser/Fatture";
 
 function App() {
   return (
