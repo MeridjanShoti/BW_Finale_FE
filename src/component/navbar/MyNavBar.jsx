@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 function MyNavBar() {
   console.log("Link is", Link);
-  
- const user = useSelector((state) => state.user.user);
+
+  const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -22,7 +23,11 @@ function MyNavBar() {
                 Home
               </Nav.Link>
               <Nav.Link to="/">Link</Nav.Link>
-              <Nav.Link as={Link} to="/dashboardUser" className={window.location.pathname === "/dashboard" ? "active" : ""}>
+              <Nav.Link
+                as={Link}
+                to="/dashboardUser"
+                className={window.location.pathname === "/dashboard" ? "active" : ""}
+              >
                 Dashboard user
               </Nav.Link>
             </Nav>
@@ -32,7 +37,14 @@ function MyNavBar() {
               <NavDropdown.Item as={Link} to="/profile">
                 Profilo
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => localStorage.removeItem("token")}>Logout</NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </NavDropdown.Item>
             </NavDropdown>
           ) : (
             <>

@@ -1,17 +1,23 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserDetails } from "../../redux/actions";
+import { fetchUserDetails, LOGOUT } from "../../redux/actions";
+import { useNavigate } from "react-router";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
       dispatch(fetchUserDetails(token));
+    } else {
+      dispatch({ type: LOGOUT });
+      localStorage.removeItem("token");
+      navigate("/login");
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, navigate]);
 
   if (!user) {
     return <p>Caricamento in corso...</p>;
