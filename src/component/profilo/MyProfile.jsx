@@ -9,6 +9,11 @@ function MyProfile() {
     console.log(utente.appUser.roles);
     console.log(utente);
   }, [utente]);
+  function uploadAvatar() {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const token = localStorage.getItem("token");
+    console.log("apertura caricamento avatar");
+  }
   return (
     <>
       {utente ? (
@@ -20,6 +25,9 @@ function MyProfile() {
               color="black"
               className="position-absolute nav-icon--lower ms-2"
               style={{ textShadow: "2px 2px 2px #FFFFFF" }}
+              onClick={() => {
+                uploadAvatar();
+              }}
             />
             <img src={utente.avatar} alt="Avatar" width="100" height="100" />
             <h3>{utente.appUser.username}</h3>
