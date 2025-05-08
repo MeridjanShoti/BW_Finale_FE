@@ -3,31 +3,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails } from "../../redux/actions";
 
 const Dashboard = () => {
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.user.user);
-    const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const token = localStorage.getItem("token");
 
-    
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchUserDetails(token));
+    }
+  }, [dispatch, token]);
 
-    useEffect(() => {
-        dispatch(fetchUserDetails(token));
-    }, [dispatch, token]); 
+  if (!user) {
+    return <p>Caricamento in corso...</p>;
+  }
 
-    return (
-        console.log(token),
-        console.log(user),
-        <div>
-            <h1>Dashboard</h1>
-            <h3>{user?.username}</h3>
-            {user.roles.find((role) => role === "ROLE_ADMIN") && (
-                <h3>Admin</h3>
-            )}
-            {user.roles.find((role) => role === "ROLE_USER") && (
-                <h3>User</h3>
-            )}
-            <h3></h3>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <h3>Benvenuto, {user.username}</h3>
+      {user.roles?.includes("ROLE_ADMIN") && <h3>Admin</h3>}
+      {user.roles?.includes("ROLE_USER") && <h3>User</h3>}
+    </div>
+  );
 };
 
 export default Dashboard;
