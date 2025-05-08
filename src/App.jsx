@@ -11,6 +11,7 @@ import Dashboard from "./component/dashboard/Dashboard";
 import DashboardUser from "./component/dashboardUser/DashboardUser";
 import DashboardFatture from "./component/dashboardUser/DashboardFatture";
 import Fatture from "./component/dashboardUser/Fatture";
+import MyProfile from "./component/profilo/MyProfile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboardUser" element={<DashboardUser />} />
           <Route path="/dashboardFatture" element={<DashboardFatture />} />
+          <Route path="/profile" element={<MyProfile />} />
         </Routes>
       </BrowserRouter>
     </>
