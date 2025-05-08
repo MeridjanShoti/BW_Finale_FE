@@ -10,8 +10,9 @@ import AccessPage from "./component/access/AccessPage";
 import Dashboard from "./component/dashboard/Dashboard";
 import DashboardUser from "./component/dashboardUser/DashboardUser";
 import DashboardFatture from "./component/dashboardUser/DashboardFatture";
-import Fatture from "./component/dashboardUser/Fatture";
 import MyProfile from "./component/profilo/MyProfile";
+import ListaClienti from "./component/clienti/ListaClienti";
+import ProfiloCliente from "./component/clienti/ProfiloCliente";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/dashboardUser" element={<DashboardUser />} />
           <Route path="/dashboardFatture" element={<DashboardFatture />} />
           <Route path="/profile" element={<MyProfile />} />
+          <Route path="/dashboardClienti" element={<ListaClienti />} />
+          <Route path= "/paginaProfilo" element={<ProfiloCliente />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -35,6 +35,20 @@ export default function DashboardUser() {
             Vai alle fatture{" "}
           </Button>
         </Card.Body>
+        
+      </Card>
+      <Card className="border-0 rounded-0" style={{ backgroundColor: "#f5f5f5" }}>
+        <Card.Body className="d-flex align-items-center justify-content-between" style={{ backgroundColor: "#f5f5f5" }}>
+          <h5 className="mb-0">Gestione Clienti</h5>
+          <Button
+            variant="outline-secondary"
+            className="d-none d-lg-block"
+            onClick={() => navigate("/dashboardClienti")}
+          >
+            {" "}
+            Vai ai Clienti{" "}
+          </Button>
+        </Card.Body>
       </Card>
       <NavbarUser />
     </Container>
