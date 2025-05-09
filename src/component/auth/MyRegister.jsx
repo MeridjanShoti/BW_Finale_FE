@@ -27,7 +27,7 @@ const MyRegister = () => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
       const token = localStorage.getItem("token");
-      const response = await fetch(apiUrl + "/register", "", {
+      const response = await fetch(apiUrl + "/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
