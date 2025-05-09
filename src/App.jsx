@@ -23,15 +23,15 @@ function App() {
         <Routes>
           <Route path="/" element={<MyHome />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<MyRegister />} />
+          <Route path="/register" element={<AccessPage />} />
           <Route path="/access" element={<AccessPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboardUser" element={<DashboardUser />} />
           <Route path="/dashboardFatture" element={<DashboardFatture />} />
           <Route path="/profile" element={<MyProfile />} />
           <Route path="/dashboardClienti" element={<ListaClienti />} />
-          <Route path= "/paginaProfilo/:id" element={<ProfiloCliente />} />
-          <Route path= "/fatture/:id" element={<FattureCliente />}/>
+          <Route path="/paginaProfilo/:id" element={<ProfiloCliente />} />
+          <Route path="/fatture/:id" element={<FattureCliente />} />
         </Routes>
       </BrowserRouter>
     </>
