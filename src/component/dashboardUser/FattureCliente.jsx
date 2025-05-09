@@ -8,6 +8,8 @@ import iconDanger from "../../assets/img/iconDanger.png";
 import { Image } from "react-bootstrap";
 import FilterButton from "../filtroFatture/FilterButton";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
+import epic from "../../assets/img/epic.png";
 
 const FattureCliente = () => {
   const clienteId = useParams();
@@ -17,6 +19,7 @@ const FattureCliente = () => {
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("Tutte");
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     fetch(apiUrl + "/fatture?idCliente=" + clienteId.id + "&sort=numero&sort=asc", {
@@ -80,6 +83,20 @@ const FattureCliente = () => {
     <>
       {fatture.length > 0 ? (
         <>
+          <Card className="border-0 rounded-0 shadow-sm mb-3">
+            <Card.Body className="d-flex align-items-center justify-content-between bg-white px-4 py-3">
+              <div className="d-flex align-items-center">
+                <Image src={user?.avatar} roundedCircle width={50} height={50} className="me-3" />
+                <div>
+                  <div className="text-muted small">Benvenuto</div>
+                  <h5 className="mb-0">
+                    {user?.nome} {user?.cognome}
+                  </h5>
+                </div>
+              </div>
+              <Image src={epic} height={40} />
+            </Card.Body>
+          </Card>
           <Container className="d-flex justify-content-center align-items-center">
             <div className="w-100">
               <h1 className="my-4 text-center">Fatture del cliente {ragioneSociale}</h1>
