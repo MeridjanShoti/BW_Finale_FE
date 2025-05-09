@@ -25,7 +25,7 @@ function MyNavBar() {
       <Navbar expand="lg" className="bg-body-tertiary d-none d-lg-block">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            React-Bootstrap
+            Epic Energy
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -33,13 +33,12 @@ function MyNavBar() {
               <Nav.Link as={Link} to="/" className={window.location.pathname === "/" && "active"}>
                 Home
               </Nav.Link>
-              <Nav.Link to="/">Link</Nav.Link>
               <Nav.Link
                 as={Link}
                 to="/dashboardUser"
                 className={window.location.pathname === "/dashboard" ? "active" : ""}
               >
-                Dashboard user
+                Dashboard
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

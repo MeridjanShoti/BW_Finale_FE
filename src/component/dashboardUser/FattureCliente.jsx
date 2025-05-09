@@ -80,9 +80,9 @@ const FattureCliente = () => {
     <>
       {fatture.length > 0 ? (
         <>
-          <div className="d-flex justify-content-center align-items-center">
-            <div>
-              <h1 className="my-4">Fatture del cliente {ragioneSociale}</h1>
+          <Container className="d-flex justify-content-center align-items-center">
+            <div className="w-100">
+              <h1 className="my-4 text-center">Fatture del cliente {ragioneSociale}</h1>
               <div className="d-flex gap-3 align-items-center">
                 <Button
                   variant="link"
@@ -108,7 +108,7 @@ const FattureCliente = () => {
                 </Form>
               </div>
             </div>
-          </div>
+          </Container>
           <FilterButton activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
           <div className="fatture-container">
             <Container>

@@ -1,8 +1,17 @@
-body{
-    background-color: #F8F7F5;
+body {
+  background-color: #f8f7f5;
 }
 
 .nav-icon--lower {
   position: relative;
-  top: 15px; 
+  top: 15px;
+}
+
+.colorDiv {
+  background-color: #f8f7f5;
+}
+
+.colorDiv:hover {
+  background-color: rgb(185, 40, 88);
+  color: white;
 }
