@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { Card, Col, Container, FormControl, InputGroup, Row, Spinner } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, FormControl, InputGroup, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router";
 import successIcon from "../../assets/img/success.png";
 import iconWarning from "../../assets/img/iconWarning.png";
 import iconDanger from "../../assets/img/iconDanger.png";
 import { Image } from "react-bootstrap";
 import FilterButton from "../filtroFatture/FilterButton";
+import { ArrowLeft, Search } from "react-bootstrap-icons";
 
 const FattureCliente = () => {
   const clienteId = useParams();
@@ -14,6 +16,7 @@ const FattureCliente = () => {
   const [ragioneSociale, setRagioneSociale] = useState("");
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("Tutte");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(apiUrl + "/fatture?idCliente=" + clienteId.id + "&sort=numero&sort=asc", {
@@ -61,9 +64,15 @@ const FattureCliente = () => {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   const filtered = fatture.filter((filterColor) => {
-    const matchesFilter = activeFilter === "Tutte" || filterColor.stato === activeFilter;
-    const matchesSearch = filterColor.id.toString().includes(search);
+    const statoNome = filterColor.stato.nome.toLowerCase();
+    const filtroNome = activeFilter.toLowerCase();
+
+    const matchesFilter = filtroNome === "tutte" || statoNome === filtroNome;
+    const matchesSearch = filterColor.numero?.toString().includes(search);
     return matchesFilter && (!search || matchesSearch);
   });
 
@@ -71,23 +80,40 @@ const FattureCliente = () => {
     <>
       {fatture.length > 0 ? (
         <>
-          <div className="d-flex justify-content-between align-items-center">
-            <h1 className="my-4">Fatture del cliente {ragioneSociale}</h1>
-            <InputGroup className="mb-3 w-25">
-              <FormControl
-                placeholder="Cerca"
-                aria-label="Cerca"
-                aria-describedby="basic-addon2"
-                /* onChange={(e) => setSearchQuery(e.target.value)} */
-              />
-            </InputGroup>
+          <div className="d-flex justify-content-center align-items-center">
+            <div>
+              <h1 className="my-4">Fatture del cliente {ragioneSociale}</h1>
+              <div className="d-flex gap-3 align-items-center">
+                <Button
+                  variant="link"
+                  onClick={() => navigate(-1)}
+                  className="p-2 me-2  "
+                  style={{ color: "#B92858", border: "2px solid #B92858" }}
+                >
+                  <ArrowLeft size={24} />
+                </Button>
+                <Form onSubmit={(e) => handleSubmit(e)} className="w-100">
+                  <InputGroup>
+                    <InputGroup.Text className="bg-white border-2" style={{ border: "2px solid #B92858" }}>
+                      <Search color="#B92858" />
+                    </InputGroup.Text>
+                    <FormControl
+                      placeholder="Cerca Fatture"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      className="border-2"
+                      style={{ border: "2px solid #B92858" }}
+                    />
+                  </InputGroup>
+                </Form>
+              </div>
+            </div>
           </div>
-
+          <FilterButton activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
           <div className="fatture-container">
-            <FilterButton activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
             <Container>
               <Row className="g-3">
-                {fatture.map((fattura) => (
+                {filtered.map((fattura) => (
                   <Col key={fattura.id} xs={12} md={6} lg={12}>
                     <Card
                       style={{
@@ -105,14 +131,19 @@ const FattureCliente = () => {
                       <Card.Body>
                         <Card.Title className="h5">Fattura N° {fattura.numero}</Card.Title>
                         <div className="d-flex justify-content-between align-items-center mb-2">
-                          <small>Stato: {fattura.stato.nome}</small>
+                          <small>
+                            Stato:{" "}
+                            {fattura.stato.nome.charAt(0).toUpperCase() + fattura.stato.nome.slice(1).toLowerCase()}
+                          </small>
                           {fattura.stato.nome === "PAGATA" && <Image src={successIcon} width={24} />}
                           {fattura.stato.nome === "IN ATTESA" && <Image src={iconWarning} width={24} />}
                           {fattura.stato.nome === "NON PAGATA" && <Image src={iconDanger} width={24} />}
                         </div>
                         <hr style={{ borderColor: "rgba(255,255,255,0.5)" }} />
-                        <Card.Text>Data: {fattura.data}</Card.Text>
-                        <Card.Text>Importo: {fattura.importo}</Card.Text>
+                        <Card.Text>Data: {new Date(fattura.data).toLocaleDateString("it-IT")}</Card.Text>
+                        <Card.Text>
+                          Importo: {fattura.importo.toLocaleString("it-IT", { style: "currency", currency: "EUR" })}
+                        </Card.Text>
                       </Card.Body>
                     </Card>
                   </Col>

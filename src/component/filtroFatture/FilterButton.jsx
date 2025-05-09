@@ -1,10 +1,10 @@
 import { Button, Row, Col } from "react-bootstrap";
 
-const FILTERS = ["Tutte", "Pagata", "In Attesa", "Da Pagare"];
+const FILTERS = ["Tutte", "Pagata", "Non Pagata", "In Attesa"];
 const COLORS = {
   Pagata: "#8BC94D",
   "In Attesa": "#FFB400",
-  "Da Pagare": "#EE404C",
+  "Non Pagata": "#EE404C",
   Tutte: "#B92858",
 };
 
@@ -20,7 +20,6 @@ function FilterButton({ activeFilter, setActiveFilter }) {
             <Button
               onClick={() => setActiveFilter(filterI)}
               style={{
-             
                 backgroundColor: isActive ? color : "transparent",
                 border: `2px solid ${color}`,
                 color: isActive ? "#fff" : color,
