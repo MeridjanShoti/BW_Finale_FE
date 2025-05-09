@@ -12,14 +12,12 @@ function MyNavBar() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   useEffect(() => {
-    if (token) {
+    const token = localStorage.getItem("token");
+
+    if (token && !user) {
       dispatch(fetchUserDetails(token));
-    } else {
-      dispatch({ type: LOGOUT });
-      localStorage.removeItem("token");
-      navigate("/login");
     }
-  }, [dispatch, token, navigate]);
+  }, [dispatch, user]);
   return (
     <div>
       <Navbar expand="lg" className="bg-body-tertiary d-none d-lg-block">
