@@ -118,6 +118,7 @@ function DashboardFatture() {
                     <Card.Title className="h5">Fattura N° {mockFattureMap.id}</Card.Title>
                     <div className="d-flex justify-content-between align-items-center mb-2">
                       <small>Stato: {mockFattureMap.stato}</small>
+                      {}
                       {mockFattureMap.icon && <Image src={mockFattureMap.icon} width={24} />}
                     </div>
                     <hr style={{ borderColor: "rgba(255,255,255,0.5)" }} />
